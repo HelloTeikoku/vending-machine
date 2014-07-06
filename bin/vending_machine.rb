@@ -3,21 +3,20 @@
 
 # 自動販売機クラス
 class VendingMachine
-  ACCEPTABLE_MONEY = [10, 50, 100, 500, 1000]
-  attr_reader :stock, :total, :sales
+  ACCEPTABLE_MONEY = [10, 50, 100, 500, 1000].freeze
+  attr_reader :stock, :total, :sale_amount
   def initialize
     @total = 0
-    @sales = 0
-    @stock = Array.new(5, Drink.new(name: "cola", price: 120))
+    @sale_amount = 0
+    #@stock = Array.new(5, Drink.new(name: "cola", price: 120))
+    @stock = Array.new(5){Drink.new(name: "cola", price: 120)}
   end
 
   # コインを投入する
-  def input(coin)
-    if ACCEPTABLE_MONEY.include?(coin)
-      @total += coin
+  def input(money)
+    if ACCEPTABLE_MONEY.include?(money)
+      @total += money
       true
-    else
-      false
     end
   end
 
@@ -35,7 +34,7 @@ class VendingMachine
     }
     cola = @stock[i]
     if (cola.price <= @total)
-      i
+      cola
     else
       false
     end
@@ -43,11 +42,12 @@ class VendingMachine
 
   # 購入
   def purchase(name)
-    i = can_buy?(name)
-    if i
-      @sales += @stock[i].price
-      @total -= @stock[i].price
-      @stock.delete_at(i)
+    drink = can_buy?(name)
+    if drink
+      @sale_amount += drink.price
+      @total -= drink.price
+      @stock.delete(drink)
+      true
     end
   end
 end

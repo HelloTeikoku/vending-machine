@@ -58,19 +58,19 @@ RSpec.describe VendingMachine do
 
   it "1円玉が投入されたら金額に加算しない" do
     answer = 0
-    expect(vending_machine.input(1)).to eq false
+    expect(vending_machine.input(1)).to eq nil
     expect(vending_machine.total).to eq answer
   end
 
   it "5円玉が投入されたら金額に加算しない" do
     answer = 0
-    expect(vending_machine.input(5)).to eq false
+    expect(vending_machine.input(5)).to eq nil
     expect(vending_machine.total).to eq answer
   end
 
   it "2000円冊が投入されたら金額に加算しない" do
     answer = 0
-    expect(vending_machine.input(2000)).to eq false
+    expect(vending_machine.input(2000)).to eq nil
     expect(vending_machine.total).to eq answer
   end
 
@@ -102,11 +102,11 @@ RSpec.describe VendingMachine do
     end
 
     it "売り上げ金額を取得する" do
-      sales= 120
+      sale_amount= 120
       vending_machine.input(100)
       vending_machine.input(50)
       vending_machine.purchase('cola')
-      expect(vending_machine.sales).to eq sales
+      expect(vending_machine.sale_amount).to eq sale_amount
     end
 
     it "払い戻し操作をする" do
