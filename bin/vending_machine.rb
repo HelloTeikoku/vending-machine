@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-
+require File.expand_path('../drink', __FILE__)
 
 # 自動販売機クラス
 class VendingMachine
@@ -10,6 +9,8 @@ class VendingMachine
     @sale_amount = 0
     #@stock = Array.new(5, Drink.new(name: "cola", price: 120))
     @stock = Array.new(5){Drink.new(name: "cola", price: 120)}
+    @stock.concat Array.new(5){Drink.new(name: "redbull", price: 200)}
+    @stock.concat Array.new(5){Drink.new(name: "water", price: 100)}
   end
 
   # コインを投入する
@@ -29,14 +30,11 @@ class VendingMachine
 
   # ジュース購入判定を行う
   def can_buy?(name)
-    i = @stock.find_index{|drink|
+    drink = @stock.find{|drink|
       drink.name == name
     }
-    cola = @stock[i]
-    if (cola.price <= @total)
-      cola
-    else
-      false
+    if (drink.price <= @total)
+      drink
     end
   end
 
@@ -50,13 +48,16 @@ class VendingMachine
       true
     end
   end
-end
 
-class Drink
-  attr_accessor :name, :price
-  def initialize(name: name, price: price)
-    @name = name
-    @price = price
+  # 購入可能リストを取得する
+  def can_buy_list()
+    purchasable_juices = []
+    @stock.map{|drink|
+      if (drink.price <= @total && !purchasable_juices.include?(drink.name))
+        purchasable_juices.push drink.name
+      end
+    }
+    purchasable_juices
   end
 end
 
