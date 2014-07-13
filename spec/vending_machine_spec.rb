@@ -131,5 +131,10 @@ RSpec.describe VendingMachine do
       vending_machine.input(50)
       expect(vending_machine.can_buy_list).to eq list
     end
+    it "購入可能リストなし" do
+     list = []
+      vending_machine.input(50)
+      expect(vending_machine.can_buy_list).to eq list
+    end
   end
 end
