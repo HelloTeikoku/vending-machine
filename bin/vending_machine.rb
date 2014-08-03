@@ -45,7 +45,7 @@ class VendingMachine
       @sale_amount += drink.price
       @total -= drink.price
       @stock.delete(drink)
-      true
+      @total
     end
   end
 
