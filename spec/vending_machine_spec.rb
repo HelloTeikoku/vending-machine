@@ -99,13 +99,12 @@ RSpec.describe VendingMachine do
       expect(!!vending_machine.can_buy?('cola')).to eq true
     end
 
-=begin
     it "ジュースを購入する" do
       vending_machine.input(100)
       vending_machine.input(50)
-      expect(vending_machine.purchase('cola')).to eq true
+      expect(vending_machine.purchase('cola')).to eq 30
     end
-=end
+
     it "売り上げ金額を取得する" do
       sale_amount= 120
       vending_machine.input(100)
