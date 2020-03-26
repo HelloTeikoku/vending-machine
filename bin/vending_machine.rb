@@ -29,7 +29,7 @@ class VendingMachine
   end
 
   # ジュース購入判定を行う
-  def can_buy?(name)
+  def purchasable?(name)
     drink = @stock.find{|drink|
       drink.name == name
     }
@@ -40,7 +40,7 @@ class VendingMachine
 
   # 購入
   def purchase(name)
-    drink = can_buy?(name)
+    drink = purchasable?(name)
     if drink
       @sale_amount += drink.price
       @total -= drink.price
@@ -50,14 +50,14 @@ class VendingMachine
   end
 
   # 購入可能リストを取得する
-  def can_buy_list()
-    purchasable_juices = []
+  def purchasable_drinks()
+    purchasable_drinks = []
     @stock.map{|drink|
-      if (drink.price <= @total && !purchasable_juices.include?(drink.name))
-        purchasable_juices.push drink.name
+      if (drink.price <= @total && !purchasable_drinks.include?(drink.name))
+        purchasable_drinks.push drink.name
       end
     }
-    purchasable_juices
+    purchasable_drinks
   end
 end
 
