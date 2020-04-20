@@ -10,7 +10,7 @@ Naming convention is taken from [here](http://devtesting.jp/tddbc/?TDDBC%E4%BB%9
 
 1. cloneしてGemをインストール
 ```
-clone git@github.com:アカウント名/vending-machine.git
+git clone git@github.com:アカウント名/vending-machine.git
 cd vending-machine
 bundle install --path vendor/bundle
 ```
