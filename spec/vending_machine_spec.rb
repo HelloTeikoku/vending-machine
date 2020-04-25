@@ -66,8 +66,8 @@ RSpec.describe VendingMachine do
 
   context "ステップ2" do
     it "1本120円のコーラが5本入ってる" do
-      #stock = vending_machine.stock # ステップ2時点
-      stock = vending_machine.stock.select{|drink| drink.name == 'cola'} # ステップ4時点
+      stock = vending_machine.stock # ステップ2時点
+      #stock = vending_machine.stock.select{|drink| drink.name == 'cola'} # ステップ4時点
       expect(stock.size).to eq 5
       stock.each do |drink|
         expect(drink.name).to eq 'cola'
