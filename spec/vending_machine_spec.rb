@@ -18,7 +18,7 @@ RSpec.describe VendingMachine do
       expect(vending_machine.input(100)).to be_truthy
     end
 
-    it "5000円玉を投入できる" do
+    it "500円玉を投入できる" do
       expect(vending_machine.input(500)).to be_truthy
     end
 
